@@ -17,3 +17,13 @@ e621.py API written by @nathan.glades
         self.copyright(): Reutnr copyright tags
         self.characters(): Returns character tags
         self.artists(): Returns artist tags
+
+Still to come:
+* Comments
+  * Comment text
+  * Comment score
+  * Comment profile picture
+* User profile
+  * Avatar
+  * Posts
+  * Comments
