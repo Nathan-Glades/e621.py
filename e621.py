@@ -66,8 +66,12 @@ class e621:
                     t['score'] = info[1].split('Score: ')[1].split('\r')[0]
                     t['user'] = info[2].split('User: ')[1].split('\r')[0]
 
-                    t['tumb'] = 'https://static1.e621.net/data/preview/' + x.split('src="https://static1.e621.net/data/preview/')[1].split('" title="')[0]
+                    try:
 
+                        t['thumb'] = 'https://static1.e621.net/data/preview/' + x.split('src="https://static1.e621.net/data/preview/')[1].split('" title="')[0]
+                    except IndexError:
+                        pass
+                    
                     r_final.append(t)
 
                 return r_final
@@ -143,56 +147,68 @@ class e621:
             return sl_final
         
         def general(self):
-            tar = self.tags_general_raw()
-            tar = tar.split('href="/post/search?tags=')
+            try:
+                tar = self.tags_general_raw()
+                tar = tar.split('href="/post/search?tags=')
 
-            ret = []
+                ret = []
 
-            for x in tar:
-                ret.append(unquote(x[:x.index('">')]))
+                for x in tar:
+                    ret.append(unquote(x[:x.index('">')]))
+                
+                ret.pop(0)
+                
+                return ret
+            except ValueError:
+                return []
             
-            ret.pop(0)
-            
-            return ret
-        
         def copyright(self):
-            tar = self.tags_copyright_raw()
-            tar = tar.split('href="/wiki/show?title=')
+            try:
+                tar = self.tags_copyright_raw()
+                tar = tar.split('href="/wiki/show?title=')
 
-            ret = []
+                ret = []
 
-            for x in tar:
-                ret.append(unquote(x[:x.index('">')]))
-            
-            ret.pop(0)
-            
-            return ret
+                for x in tar:
+                    ret.append(unquote(x[:x.index('">')]))
+                
+                ret.pop(0)
+                
+                return ret
+            except ValueError:
+                return []
         
         def characters(self):
-            tar = self.tags_characters_raw()
-            tar = tar.split('href="/wiki/show?title=')
+            try:
+                tar = self.tags_characters_raw()
+                tar = tar.split('href="/wiki/show?title=')
 
-            ret = []
+                ret = []
 
-            for x in tar:
-                ret.append(unquote(x[:x.index('">')]))
-            
-            ret.pop(0)
-            
-            return ret
+                for x in tar:
+                    ret.append(unquote(x[:x.index('">')]))
+                
+                ret.pop(0)
+                
+                return ret
+            except ValueError:
+                return []
         
         def artists(self):
-            tar = self.tags_artist_raw()
-            tar = tar.split('href="/artist/show?name=')
+            try:
+                tar = self.tags_artist_raw()
+                tar = tar.split('href="/artist/show?name=')
 
-            ret = []
+                ret = []
 
-            for x in tar:
-                ret.append(unquote(x[:x.index('">')]))
-            
-            ret.pop(0)
-            
-            return ret
+                for x in tar:
+                    ret.append(unquote(x[:x.index('">')]))
+                
+                ret.pop(0)
+                
+                return ret
+            except ValueError:
+                return []
         
         def tags_general_raw(self):
             start = self.urlread.index('<li class="tag-type-general">')
