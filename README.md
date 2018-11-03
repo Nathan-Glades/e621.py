@@ -1,9 +1,10 @@
 e621.py API written by @nathan.glades
 
-Search:
+    Search:
     e621.search([tags], [pagenumber]):
         self.results(): Returns list of dicts containg the thumbnail, id, score, user, and comments
     
+    Post:
     e621.post([postid]):
         self.image(): Link to fullsize image
         self.download(): Saves image to disk
