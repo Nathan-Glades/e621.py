@@ -1,5 +1,11 @@
 e621.py API written by @nathan.glades
 
+Comming:
+- [x] Post image
+- [x] Post Tags
+- [ ] Post comments
+- [ ] User profile
+
     Search:
     e621.search([tags], [pagenumber]):
         self.results(): Returns list of dicts containg the thumbnail, id, score, user, and comments
